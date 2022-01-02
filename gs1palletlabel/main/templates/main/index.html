@@ -1,13 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-sdwvcwwv test
-</body>
-</html>
+{% extends 'main\base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block contenttitle %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+{% if labels %}
+    {% for el in labels %}
+        <div class="alert alert-success mt-2">
+            <h3>{{ el.order_number }}</h3>
+            <p>{{ el.supplier_id }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-success mt-2">
+       <h3>Dvs. Nu aveti etichete</h3>
+    </div>
+ {% endif %}
+
+{% endblock %}
