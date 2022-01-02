@@ -1,0 +1,23 @@
+{% extends 'main\base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block contenttitle %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {%  csrf_token %}
+    {{ form.order_number }}<br>
+    {{ form.supplier_id }}<br>
+    {{ form.destination_id }}<br>
+    {{ form.pallets_count }}<br>
+    {{ form.product_id }}<br>
+    {{ form.link_to_pdf }}<br>
+    <button type="submit" class="btn btn-success">Adauga eticheta</button>
+    <span>{{ error }}</span>
+</form>
+{% endblock %}
