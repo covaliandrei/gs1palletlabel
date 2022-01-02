@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Labels
+from .models import Labels, Suppliers
 from .forms import LabelForm
 
 
 def index(request):
     labels = Labels.objects.order_by('id')
-    return render(request, 'main/index.html', {'title':'Pagina Principala', 'labels':labels})
+    supplier_id = Suppliers.objects.all()
+    return render(request, 'main/index.html', {'title':'Pagina Principala', 'labels':labels,'supplier_id':supplier_id})
 
 
 def about(request):

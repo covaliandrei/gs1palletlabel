@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="alert alert-success mt-2">
+    <h1>Creaza o eticheta noua.</h1>
+</div>
 <form method="POST">
     {%  csrf_token %}
     {{ form.order_number }}<br>
@@ -20,4 +23,70 @@
     <button type="submit" class="btn btn-success">Adauga eticheta</button>
     <span>{{ error }}</span>
 </form>
+<script>
+
+function PopulateOptions(dropdownID,defaultOptionText) {
+    let dropdown = document.getElementById(dropdownID);
+    dropdown.length = 0;
+    let defaultOption = document.createElement('option');
+    defaultOption.text = defaultOptionText;
+    dropdown.add(defaultOption);
+    dropdown.selectedIndex = 0;
+    let datazz = dropdown.dataset.list;
+    datazz = datazz.replaceAll('\'','"');
+    let data = []
+        data = JSON.parse(datazz);
+        let option;
+        for (let i = 0; i < data.length; i++) {
+          option = document.createElement('option');
+          option.text = data[i].supplier_name;
+          option.value = data[i].id;
+          dropdown.add(option);
+        }
+}
+PopulateOptions('id_supplier_id','Alege Furnizoru');
+
+function PopulateOptionsDest(dropdownID,defaultOptionText) {
+    let dropdown = document.getElementById(dropdownID);
+    dropdown.length = 0;
+    let defaultOption = document.createElement('option');
+    defaultOption.text = defaultOptionText;
+    dropdown.add(defaultOption);
+    dropdown.selectedIndex = 0;
+    let datazz = dropdown.dataset.list;
+    datazz = datazz.replaceAll('\'','"');
+    let data = []
+        data = JSON.parse(datazz);
+        let option;
+        for (let i = 0; i < data.length; i++) {
+          option = document.createElement('option');
+          option.text = data[i].destination_name;
+          option.value = data[i].id;
+          dropdown.add(option);
+        }
+}
+PopulateOptionsDest('id_destination_id','Alege Destinatia');
+
+function PopulateOptionsProd(dropdownID,defaultOptionText) {
+    let dropdown = document.getElementById(dropdownID);
+    dropdown.length = 0;
+    let defaultOption = document.createElement('option');
+    defaultOption.text = defaultOptionText;
+    dropdown.add(defaultOption);
+    dropdown.selectedIndex = 0;
+    let datazz = dropdown.dataset.list;
+    datazz = datazz.replaceAll('\'','"');
+    let data = []
+        data = JSON.parse(datazz);
+        let option;
+        for (let i = 0; i < data.length; i++) {
+          option = document.createElement('option');
+          option.text = data[i].product_name;
+          option.value = data[i].id;
+          dropdown.add(option);
+        }
+}
+PopulateOptionsProd('id_product_id','Alege Produsu');
+
+</script>
 {% endblock %}

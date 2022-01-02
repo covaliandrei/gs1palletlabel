@@ -12,16 +12,13 @@
 {% if labels %}
     <div class="row">
     {% for el in labels %}
-        <div class="col-3 col-md">
-            <div class="alert alert-success mt-2">
-                <h3>{{ el.order_number }}</h3>
-                <p>{{ el.supplier_id }}<span><a href="{{ el.link_to_pdf }}" >{{ el.link_to_pdf }}</a></span></p>
+            <div class="alert alert-success">
+                <p><strong>{{ el.order_number }}</strong>{{ el.supplier_id }}<span><a href="{{ el.link_to_pdf }}" >{{ el.link_to_pdf }}</a></span></p>
             </div>
-        </div>
     {% endfor %}
     </div>
 {% else %}
-    <div class="alert alert-success mt-2">
+    <div class="alert alert-success mt-1">
        <h3>Dvs. Nu aveti etichete</h3>
     </div>
  {% endif %}

@@ -1,35 +1,38 @@
-from .models import Labels
-from django.forms import ModelForm, TextInput, NumberInput, Textarea
+from .models import Labels, Suppliers, Destinations, Products
+from django.forms import ModelForm, TextInput, NumberInput, Select, HiddenInput
 
 
 class LabelForm(ModelForm):
     class Meta:
         model = Labels
+        supplier_id = list(Suppliers.objects.all().values())
+        destination_id = list(Destinations.objects.all().values())
+        product_id = list(Products.objects.all().values())
+
         fields = ["order_number", "supplier_id", "destination_id", "pallets_count", "product_id", "link_to_pdf"]
         widgets = {
             "order_number": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Numaru Comenzii'
             }),
-            "supplier_id": NumberInput(attrs={
+            "supplier_id": Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'supplier_id',
+                'data-list': supplier_id,
             }),
-            "destination_id": NumberInput(attrs={
+            "destination_id": Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'destination_id',
+                'data-list': destination_id,
             }),
             "pallets_count": NumberInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'pallets_count',
+                'placeholder': 'Cantitatea paletelor',
             }),
-            "product_id": NumberInput(attrs={
+            "product_id": Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'product_id',
+                'data-list': product_id,
             }),
-            "link_to_pdf": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'link_to_pdf'
+            "link_to_pdf": HiddenInput(attrs={
+                'value': '#'
             }),
 
         }
