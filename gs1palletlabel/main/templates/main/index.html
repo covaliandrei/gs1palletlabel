@@ -13,7 +13,11 @@
     <div class="row">
     {% for el in labels %}
             <div class="alert alert-success">
-                <p><strong>{{ el.order_number }}</strong>{{ el.supplier_id }}<span><a href="{{ el.link_to_pdf }}" >{{ el.link_to_pdf }}</a></span></p>
+                <p>{{ el.id }}</p>
+                <p><strong>{{ el.order_number }}</strong>{{ el.supplier_id }}<span></span></p>
+                <p><strong>{{ el.destination_id }}</strong>{{ el.product_id }}</p>
+                {{ el.pallets_count }}<a href="{{ el.link_to_pdf }}" >{{ el.link_to_pdf }}</a>
+                <p><a class="btn btn-sm btn-danger" href="/delete/{{ el.id }}/">Sterge</a></p>
             </div>
     {% endfor %}
     </div>

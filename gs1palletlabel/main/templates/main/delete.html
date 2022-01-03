@@ -1,0 +1,32 @@
+{% extends 'main\base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block contenttitle %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+
+			<p>Sunteti sigur(a) ?</p>
+			<p>Stergem eticheta pentru "{{item}}"?</p>
+
+			<form action="{% url 'delete' item.id  %}" method="POST">
+
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'home' %}">aTmeNa ?</a>
+
+				<button type="submit" class="btn btn-danger">Sterge eticheta ?</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

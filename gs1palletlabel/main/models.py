@@ -42,10 +42,10 @@ class Products(models.Model):
 
 class Labels(models.Model):
     order_number = models.CharField('OrderNumber', max_length=25)
-    supplier_id = models.SmallIntegerField('SupplierID')
-    destination_id = models.SmallIntegerField('DestinationID')
+    supplier_id = models.ForeignKey(Suppliers, null=True, on_delete= models.SET_NULL)
+    destination_id = models.ForeignKey(Destinations, null=True, on_delete= models.SET_NULL)
     pallets_count = models.SmallIntegerField('PalletsCount')
-    product_id = models.SmallIntegerField('ProductID')
+    product_id = models.ForeignKey(Products, null=True, on_delete= models.SET_NULL)
     link_to_pdf = models.CharField('LinkToPdf', max_length=500)
 
     def __str__(self):
