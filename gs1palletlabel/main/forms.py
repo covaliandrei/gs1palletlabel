@@ -1,5 +1,8 @@
+from django.forms import ModelForm, TextInput, NumberInput, Select, HiddenInput, EmailInput, PasswordInput
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+# from django import forms
 from .models import Labels, Suppliers, Destinations, Products
-from django.forms import ModelForm, TextInput, NumberInput, Select, HiddenInput
 
 
 class LabelForm(ModelForm):
@@ -34,5 +37,30 @@ class LabelForm(ModelForm):
             "link_to_pdf": HiddenInput(attrs={
                 'value': '#'
             }),
+
+        }
+
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        widgets = {
+            "username": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nume Utilizator',
+            }),
+            "email": EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'E-Mail Utilizator',
+            }),
+            "password1": PasswordInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Parola',
+            }),
+            "password2": PasswordInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Confirma Parola',
+            })
 
         }

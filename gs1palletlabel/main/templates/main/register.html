@@ -1,0 +1,77 @@
+{% extends 'main\base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block contenttitle %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="signup-form">
+<form action="" method="POST">
+    {% csrf_token %}
+<div class="alert alert-success mt-2">
+    <h2>Creaza un utilizator.</h2>
+</div>
+		<p>Completeaza toate cimpurile pentru a crea un utilizator!</p>
+		<p>Inregistrindu-se, etichetele vor putea fi transmite prin email indicat la momentul inregistrarii!</p>
+		<hr>
+        <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<span class="fa fa-user"></span>
+					</span>
+				</div>
+				{{ form.username }}
+			</div>
+        </div>
+        <div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-paper-plane"></i>
+					</span>
+				</div>
+				{{ form.email }}
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+					</span>
+				</div>
+				{{ form.password1 }}
+			</div>
+        </div>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<i class="fa fa-lock"></i>
+						<i class="fa fa-check"></i>
+					</span>
+				</div>
+				{{ form.password2 }}
+			</div>
+        </div>
+		<div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg">Creaza utilizatoru</button>
+         </div>
+    </form>
+	<div class="text-center">Deja ai un account? <a href="/login">Intrarea e aici</a></div>
+</div>
+<script>
+	var element = document.getElementById("id_password1");
+	element.classList.add("form-control");
+	element.placeholder = "Parola";
+	var element = document.getElementById("id_password2");
+	element.classList.add("form-control");
+	element.placeholder = "Repeta Parola";
+</script>
+
+{% endblock %}
