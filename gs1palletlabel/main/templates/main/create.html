@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="alert alert-success mt-2">
-    <h1>Creaza o eticheta noua.</h1>
+    <h1>{{ title }}</h1>
 </div>
 <form method="POST">
     {%  csrf_token %}

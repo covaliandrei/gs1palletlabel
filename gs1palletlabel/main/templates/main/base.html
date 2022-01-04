@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Andrei Covali - aca oopsadmin https://github.com/oopsadmin">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Etichete pentru palete</title>
+    <title>{{ title }}</title>
 
     <link rel="canonical" href="https://github.com/oopsadmin">
 
@@ -210,6 +210,7 @@ body {
 
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+   {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'home' %}">Gestionarea etichetelor</a>
         </li>
@@ -228,7 +229,15 @@ body {
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Iesirea</a>
         </li>
-    </ul>
+   {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Inregistreaza te</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Autorizarea</a>
+        </li>
+   {% endif %}
+      </ul>
         <a class="nav-link" href="/admin">Administrarea</a>
     </div>
   </div>
@@ -242,7 +251,9 @@ body {
 <div class="container py-3">
 <main>
     <container>
-      <p class="fs-5 text-muted">{% block content %}{% endblock %}</p>
+      <p class="fs-5 text-muted">
+        {% block content %}{% endblock %}
+      </p>
     </container>
 </main>
 </div>

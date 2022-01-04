@@ -70,9 +70,9 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def index(request):
-    labels = Labels.objects.order_by('id')
+    labels = Labels.objects.all().order_by('-id')
     supplier_id = Suppliers.objects.all()
-    return render(request, 'main/index.html', {'title':'Pagina Principala', 'labels':labels,'supplier_id':supplier_id})
+    return render(request, 'main/index.html', {'title':'Pagina Principala - Gestionarea etichetelor', 'labels':labels,'supplier_id':supplier_id})
 
 
 @login_required(login_url='login')
@@ -106,7 +106,7 @@ def create(request):
             label = PdfLabel(
                 request.POST['order_number'],
                 str(list(Suppliers.objects.filter(id=int(request.POST['supplier_id'])))[0]),
-                str(list(Destinations.objects.filter(id=int(request.POST['destination_id'])))[0]),
+                str(Destinations.objects.get(id=int(request.POST['destination_id'])).destination_name),
                 str(list(Products.objects.filter(id=int(request.POST['product_id'])))[0]),
                 prod[0]['product_scu'],
                 str(prod[0]['boxes_per_pallet']),
@@ -114,6 +114,8 @@ def create(request):
                 prod[0]['weight_netto'],
                 int(request.POST['pallets_count']))
 
+            DestById = Destinations.objects.get(id=int(request.POST['destination_id'])).destination_name
+            print(DestById)
 #            print(prod[0]['product_scu'])
 
 #            print(request.POST['supplier_id'])
@@ -128,7 +130,7 @@ def create(request):
     form = LabelForm()
     context = {
         'form': form,
-        'title': 'Creaza Eticheta',
+        'title': 'Creaza o eticheta noua.',
         'error': error,
     }
     return render(request, 'main/create.html',  context)
@@ -278,8 +280,8 @@ def PdfLabel(order_number,
             i += 1
         j += 1
 
-    pdf.output('main\\labels\\' + order_number + '.pdf', 'F')
-    return 'main\\labels\\' + order_number + '.pdf'
+    pdf.output('main\\static\\labels\\' + order_number + '.pdf', 'F')
+    return 'main\\static\\labels\\' + order_number + '.pdf'
 
 
 

@@ -11,7 +11,7 @@ class LabelForm(ModelForm):
         supplier_id = list(Suppliers.objects.all().values())
         destination_id = list(Destinations.objects.all().values())
         product_id = list(Products.objects.all().values())
-
+        print(destination_id)
         fields = ["order_number", "supplier_id", "destination_id", "pallets_count", "product_id", "link_to_pdf"]
         widgets = {
             "order_number": TextInput(attrs={
@@ -29,6 +29,7 @@ class LabelForm(ModelForm):
             "pallets_count": NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Cantitatea paletelor',
+                'value': 1
             }),
             "product_id": Select(attrs={
                 'class': 'form-control',
